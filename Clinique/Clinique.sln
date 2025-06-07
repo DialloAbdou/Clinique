@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35431.28
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{632FEFE6-EF97-46D2-9E9F-73BB089C71D6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{25162BB5-9579-49C7-B738-51246B30DB08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{8BF19BFB-2ECE-44BA-8715-4A20A2686B5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "applications", "applications", "{29C54A5E-DAA7-4C2E-AAD0-94105EB9F92C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "domains", "domains", "{EE1E8815-BCA7-4D5B-8645-3D7601B6F855}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{D5724A29-7AED-4C4B-BF6F-CE21D952B0C3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructures", "infrastructures", "{11DB6B57-7A93-4F24-873A-C025B645AD93}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliniqueApp", "src\API\applications\CliniqueApp\CliniqueApp.csproj", "{1EEA1267-EED4-4427-B8E2-7794FCAC1735}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1EEA1267-EED4-4427-B8E2-7794FCAC1735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EEA1267-EED4-4427-B8E2-7794FCAC1735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EEA1267-EED4-4427-B8E2-7794FCAC1735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EEA1267-EED4-4427-B8E2-7794FCAC1735}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8BF19BFB-2ECE-44BA-8715-4A20A2686B5A} = {632FEFE6-EF97-46D2-9E9F-73BB089C71D6}
+		{29C54A5E-DAA7-4C2E-AAD0-94105EB9F92C} = {8BF19BFB-2ECE-44BA-8715-4A20A2686B5A}
+		{EE1E8815-BCA7-4D5B-8645-3D7601B6F855} = {8BF19BFB-2ECE-44BA-8715-4A20A2686B5A}
+		{D5724A29-7AED-4C4B-BF6F-CE21D952B0C3} = {8BF19BFB-2ECE-44BA-8715-4A20A2686B5A}
+		{11DB6B57-7A93-4F24-873A-C025B645AD93} = {8BF19BFB-2ECE-44BA-8715-4A20A2686B5A}
+		{1EEA1267-EED4-4427-B8E2-7794FCAC1735} = {29C54A5E-DAA7-4C2E-AAD0-94105EB9F92C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17C27636-0681-4CD3-AC5C-459EB4BB8C9E}
+	EndGlobalSection
+EndGlobal
