@@ -30,6 +30,18 @@ namespace CliniqueApp.ApplicationServices.Applications
         {
             return await _traitementService.GetAllTimeTraitementPatients();
         }
+        /// <summary>
+        /// elle renvoie la cout de traitement
+        /// d'un patient
+        /// </summary>
+        /// <param name="maladeId">
+        ///  maladie du patient son Id
+        /// </param>
+        /// <returns></returns>
+        public async Task<decimal> GetTraitementCostByPatient(int maladeId)
+        {
+           return await _traitementService.GetTraitementCostByPatient(maladeId);
+        }
 
         /// <summary>
         /// elle traitement correspondant d'une
@@ -42,6 +54,17 @@ namespace CliniqueApp.ApplicationServices.Applications
             return await _traitementService.GetTraitementMaladieByPatient(maladeId);
         }
 
-
+        /// <summary>
+        /// elle renvoie la durée de traitement
+        /// par partient
+        /// </summary>
+        /// <param name="maladeId">
+        /// maladie du patient son Id
+        /// </param>
+        /// <returns></returns>
+        public async Task<int> GetTraitementTimeByPatient(int maladeId)
+        {
+            return await _traitementService.GetTraitementTimeByPatient(maladeId);
+        }
     }
 }
