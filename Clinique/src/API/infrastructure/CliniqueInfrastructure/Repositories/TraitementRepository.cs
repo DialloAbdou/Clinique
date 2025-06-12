@@ -66,6 +66,7 @@ namespace CliniqueInfrastructure.Repositories
             var t = _maladie.Soins
                                 .Select(m => m.Durees)
                                 .Sum();
+
             return t;
         }
     }

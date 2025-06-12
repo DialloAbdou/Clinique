@@ -11,10 +11,7 @@ namespace CliniqueInfrastructure.Contrats
     {
         Task<int>GetTraitementTimeByPatient( int maladeId);
         Task<Maladie> GetTraitementMaladieByPatient(int maladeId);
-      //  Task<int> GetAllTimeTraitementPatients();
         Task<decimal> GetTraitementCostByPatient(int maladeId);
-       // Task<decimal> GetAllCostTraitementPatients();
-
 
     }
 }
