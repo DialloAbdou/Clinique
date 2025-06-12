@@ -1,6 +1,6 @@
 ﻿namespace CliniqueApp.Dto
 {
-    public record PatientOutput
+    public record MedecinOutPut
     (
         string NomPrenom,
         string Adresse,

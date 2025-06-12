@@ -1,24 +1,36 @@
-﻿using CliniqueApp.Dto;
+﻿using CliniqueApp.EndPoints;
+using CliniqueInfrastructure;
 using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder();
+
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
+builder.Services.AddDbContext<CliniqueDbContext>
+    (op => op.UseSqlite(builder.Configuration.GetConnectionString("sqlite")));
+
+// Injection des Services
+builder.Services.AddPatientService();
+builder.Services.AddMedecinService();
+builder.Services.AddMaladeService();
+builder.Services.AddSoinService();
+builder.Services.AddTraitementService();
+
 var app = builder.Build();
-app.MapGet("/patient", () => "Hello patient");
+// Call EndPoints
+app.MapGroup("/medecin")
+    .GetMedecinEndPoint();
 
-app.MapPost("/patient",
-    (
-         [FromBody] PatientInput patientInput,
-         [FromServices] IValidator<PatientInput> validator
-    ) =>
-{
-    var patientValidate = validator.Validate(patientInput);
-    if (!patientValidate.IsValid)
-    {
-        return Results.BadRequest(patientValidate.Errors);
-    }
-    return Results.Ok(new PatientOutput());
+app.MapGroup("/patient")
+    .GetPatientEndPoint();
 
-}); 
+app.MapGroup("/malade")
+    .GetMaladeEndPoint();
+
+app.MapGroup("/soin")
+    .GetSoinEndPoint();
+
+app.MapGroup("/traitement")
+    .GetTraitementEndPoint();
+
 app.Run();

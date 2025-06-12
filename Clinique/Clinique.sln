@@ -17,7 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "services", "services", "{D5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infrastructures", "infrastructures", "{11DB6B57-7A93-4F24-873A-C025B645AD93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliniqueApp", "src\API\applications\CliniqueApp\CliniqueApp.csproj", "{1EEA1267-EED4-4427-B8E2-7794FCAC1735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CliniqueApp", "src\API\applications\CliniqueApp\CliniqueApp.csproj", "{1EEA1267-EED4-4427-B8E2-7794FCAC1735}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CliniqueDomain", "src\API\domains\CliniqueDomain\CliniqueDomain.csproj", "{CA3D8E3E-4223-4DB7-A96A-00060C419C2D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CliniqueService", "src\API\services\CliniqueService\CliniqueService.csproj", "{61C901D4-80C9-4AA8-B699-9E6EE2EF5063}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CliniqueInfrastructure", "src\API\infrastructure\CliniqueInfrastructure\CliniqueInfrastructure.csproj", "{D0BF760C-B200-497E-9EF7-411FF487C0C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CliniqueTestUnitaire", "tests\CliniqueTestUnitaire\CliniqueTestUnitaire.csproj", "{9419645F-B740-495B-A8DD-BBAECE9790E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +37,22 @@ Global
 		{1EEA1267-EED4-4427-B8E2-7794FCAC1735}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EEA1267-EED4-4427-B8E2-7794FCAC1735}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EEA1267-EED4-4427-B8E2-7794FCAC1735}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA3D8E3E-4223-4DB7-A96A-00060C419C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA3D8E3E-4223-4DB7-A96A-00060C419C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA3D8E3E-4223-4DB7-A96A-00060C419C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA3D8E3E-4223-4DB7-A96A-00060C419C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61C901D4-80C9-4AA8-B699-9E6EE2EF5063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C901D4-80C9-4AA8-B699-9E6EE2EF5063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C901D4-80C9-4AA8-B699-9E6EE2EF5063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C901D4-80C9-4AA8-B699-9E6EE2EF5063}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0BF760C-B200-497E-9EF7-411FF487C0C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0BF760C-B200-497E-9EF7-411FF487C0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0BF760C-B200-497E-9EF7-411FF487C0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0BF760C-B200-497E-9EF7-411FF487C0C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9419645F-B740-495B-A8DD-BBAECE9790E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9419645F-B740-495B-A8DD-BBAECE9790E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9419645F-B740-495B-A8DD-BBAECE9790E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9419645F-B740-495B-A8DD-BBAECE9790E0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -40,6 +64,10 @@ Global
 		{D5724A29-7AED-4C4B-BF6F-CE21D952B0C3} = {8BF19BFB-2ECE-44BA-8715-4A20A2686B5A}
 		{11DB6B57-7A93-4F24-873A-C025B645AD93} = {8BF19BFB-2ECE-44BA-8715-4A20A2686B5A}
 		{1EEA1267-EED4-4427-B8E2-7794FCAC1735} = {29C54A5E-DAA7-4C2E-AAD0-94105EB9F92C}
+		{CA3D8E3E-4223-4DB7-A96A-00060C419C2D} = {EE1E8815-BCA7-4D5B-8645-3D7601B6F855}
+		{61C901D4-80C9-4AA8-B699-9E6EE2EF5063} = {D5724A29-7AED-4C4B-BF6F-CE21D952B0C3}
+		{D0BF760C-B200-497E-9EF7-411FF487C0C1} = {11DB6B57-7A93-4F24-873A-C025B645AD93}
+		{9419645F-B740-495B-A8DD-BBAECE9790E0} = {25162BB5-9579-49C7-B738-51246B30DB08}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {17C27636-0681-4CD3-AC5C-459EB4BB8C9E}
