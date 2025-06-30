@@ -1,4 +1,5 @@
 ﻿using CliniqueDomain.Models;
+using CliniqueDomain.Tools;
 using CliniqueInfrastructure.Contrats;
 using CliniqueService.contracts;
 
@@ -21,7 +22,7 @@ namespace CliniqueService.domainServices
         public async Task<Medecin> AddMedecinAsync(Medecin medecin)
         {
             var nbreMedecin = await GetNbMedecin();
-            if(nbreMedecin > 2)
+            if(nbreMedecin >=(Int32)Limites.A_DeuxMedecins)
             {
                 throw new IndexOutOfRangeException($"le service des urgences dispose {nbreMedecin} medecins");
             }
