@@ -13,7 +13,7 @@ namespace CliniqueDomain.Models
         public string TypeSoin { get; set; } = string.Empty;
         public int Durees { get; set; }
         public decimal prix { get; set; }
-        public List<Maladie> Maladies { get; set; } = new List<Maladie>();
+        public ICollection<Maladie> Maladies { get; set; } = new List<Maladie>();
 
     }
 }

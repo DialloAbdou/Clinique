@@ -6,5 +6,6 @@
         public string Prenom { get; set; } = string.Empty;
         public string Adresse { get; set; } = string.Empty;
         public int Age { get; set; }
+        public string ? Token { get; set; }
     }
 }

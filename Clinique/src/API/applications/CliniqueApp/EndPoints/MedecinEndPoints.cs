@@ -36,7 +36,10 @@ namespace CliniqueApp.EndPoints
                                     medecinInput.Nom,
                                     medecinInput.Prenom,
                                     medecinInput.Adresse,
-                                    medecinInput.Age
+                                    medecinInput.Age,
+                                    medecinInput.Token
+
+
                                   );
             return Results.Ok(CliniqueMapping.ToOutPutMedecin(_medecin));
         }

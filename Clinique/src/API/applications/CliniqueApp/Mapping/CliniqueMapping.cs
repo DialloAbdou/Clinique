@@ -41,7 +41,9 @@ namespace CliniqueApp.Mapping
            (
              NomPrenom: $"{medecin.Prenom} {medecin.Nom}",
              Adresse: medecin.Adresse,
-             Age: medecin.Age
+             Age: medecin.Age,
+             Token: medecin.Token
+
            );
         }
 
@@ -57,7 +59,7 @@ namespace CliniqueApp.Mapping
         {
             return new SoinOutPut
                 (
-                   TypeSoin: soin.TypeSoin,
+                     TypeSoin: soin.TypeSoin,
                      Durees: soin.Durees,
                      prix : soin.prix   
                 );

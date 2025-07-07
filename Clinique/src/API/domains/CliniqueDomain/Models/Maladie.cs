@@ -10,8 +10,8 @@ namespace CliniqueDomain.Models
     {
         public int Id { get; set; }
         public string Pathologie { get; set; } = string.Empty;
-        public List<Patient> Patients { get; set; } = new List<Patient>();
-        public List<Soin>Soins { get; set; } = new List <Soin>();
+        public ICollection<Patient> Patients { get; set; } = new List<Patient>();
+        public ICollection<Soin>Soins { get; set; } = new List <Soin>();
 
     }
 }

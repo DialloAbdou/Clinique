@@ -29,6 +29,7 @@ namespace CliniqueInfrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Token = table.Column<string>(type: "TEXT", maxLength: 16, nullable: false),
                     Nom = table.Column<string>(type: "TEXT", nullable: false),
                     Prenom = table.Column<string>(type: "TEXT", nullable: false),
                     Adresse = table.Column<string>(type: "TEXT", nullable: false),
@@ -107,6 +108,12 @@ namespace CliniqueInfrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Medecin_Token",
+                table: "Medecin",
+                column: "Token",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Patients_MaladieId",

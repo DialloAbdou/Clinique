@@ -15,5 +15,6 @@ namespace CliniqueDomain.Models
         public virtual Medecin Medecin { get; set; }
 
 
+
     }
 }

@@ -20,14 +20,16 @@ namespace CliniqueApp.ApplicationServices.Applications
         /// <param name="adresse"></param>
         /// <param name="age"></param>
         /// <returns></returns>
-        public async Task<Medecin> AddMedecin(string nom, string prenom, string adresse, int age)
+        public async Task<Medecin> AddMedecin(string nom, string prenom, string adresse, int age, string ?Token)
         {
             return await _medecinService.AddMedecinAsync(new Medecin
             {
                 Nom = nom,
                 Prenom = prenom,
                 Adresse = adresse,
-                Age = age
+                Age = age, 
+                Token = Guid.NewGuid().ToString().Substring(0,16)
+
 
             });
         }

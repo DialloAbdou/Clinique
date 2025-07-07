@@ -4,6 +4,8 @@
     (
         string NomPrenom,
         string Adresse,
-        int Age
+        int Age,
+        string Token
+
     );
 }

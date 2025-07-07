@@ -29,43 +29,6 @@ namespace CliniqueInfrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Maladies", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Pathologie = "scarlatine"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Pathologie = "Varicelle"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Pathologie = "Tuberculose"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Pathologie = "Covid"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Pathologie = "Grippe"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Pathologie = "Rhume"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Pathologie = "Oreillon"
-                        });
                 });
 
             modelBuilder.Entity("CliniqueDomain.Models.Medecin", b =>
@@ -89,27 +52,17 @@ namespace CliniqueInfrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
-                    b.ToTable("Medecin", (string)null);
+                    b.HasIndex("Token")
+                        .IsUnique();
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Adresse = "",
-                            Age = 0,
-                            Nom = "Medecin1",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Adresse = "",
-                            Age = 0,
-                            Nom = "Medecin2",
-                            Prenom = ""
-                        });
+                    b.ToTable("Medecin", (string)null);
                 });
 
             modelBuilder.Entity("CliniqueDomain.Models.Patient", b =>
@@ -146,108 +99,6 @@ namespace CliniqueInfrastructure.Migrations
                     b.HasIndex("MedecinId");
 
                     b.ToTable("Patients", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 1,
-                            MedecinId = 1,
-                            Nom = "Patient1",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 1,
-                            MedecinId = 1,
-                            Nom = "Patient2",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 2,
-                            MedecinId = 1,
-                            Nom = "Patient3",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 3,
-                            MedecinId = 1,
-                            Nom = "Patient4",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 4,
-                            MedecinId = 1,
-                            Nom = "Patient5",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 4,
-                            MedecinId = 1,
-                            Nom = "Patient6",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 5,
-                            MedecinId = 2,
-                            Nom = "Patient7",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 6,
-                            MedecinId = 2,
-                            Nom = "Patient8",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 7,
-                            MedecinId = 2,
-                            Nom = "Patient9",
-                            Prenom = ""
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Adresse = "",
-                            Age = 0,
-                            MaladieId = 7,
-                            MedecinId = 2,
-                            Nom = "Patient10",
-                            Prenom = ""
-                        });
                 });
 
             modelBuilder.Entity("CliniqueDomain.Models.Soin", b =>
@@ -269,36 +120,6 @@ namespace CliniqueInfrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Soins", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Durees = 1,
-                            TypeSoin = "soin1",
-                            prix = 50m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Durees = 2,
-                            TypeSoin = "soin2",
-                            prix = 100m
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Durees = 3,
-                            TypeSoin = "soin3",
-                            prix = 150m
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Durees = 5,
-                            TypeSoin = "soin4",
-                            prix = 200m
-                        });
                 });
 
             modelBuilder.Entity("CliniqueDomain.Models.Traitement", b =>
@@ -314,68 +135,6 @@ namespace CliniqueInfrastructure.Migrations
                     b.HasIndex("MaladieId");
 
                     b.ToTable("Traitements");
-
-                    b.HasData(
-                        new
-                        {
-                            SoinId = 1,
-                            MaladieId = 1
-                        },
-                        new
-                        {
-                            SoinId = 2,
-                            MaladieId = 1
-                        },
-                        new
-                        {
-                            SoinId = 3,
-                            MaladieId = 2
-                        },
-                        new
-                        {
-                            SoinId = 1,
-                            MaladieId = 3
-                        },
-                        new
-                        {
-                            SoinId = 3,
-                            MaladieId = 3
-                        },
-                        new
-                        {
-                            SoinId = 4,
-                            MaladieId = 3
-                        },
-                        new
-                        {
-                            SoinId = 2,
-                            MaladieId = 4
-                        },
-                        new
-                        {
-                            SoinId = 4,
-                            MaladieId = 4
-                        },
-                        new
-                        {
-                            SoinId = 3,
-                            MaladieId = 5
-                        },
-                        new
-                        {
-                            SoinId = 4,
-                            MaladieId = 5
-                        },
-                        new
-                        {
-                            SoinId = 1,
-                            MaladieId = 6
-                        },
-                        new
-                        {
-                            SoinId = 2,
-                            MaladieId = 7
-                        });
                 });
 
             modelBuilder.Entity("CliniqueDomain.Models.Patient", b =>

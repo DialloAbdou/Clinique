@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CliniqueInfrastructure.Migrations
 {
     [DbContext(typeof(CliniqueDbContext))]
-    [Migration("20250611202932_CreateDb")]
+    [Migration("20250704101243_CreateDb")]
     partial class CreateDb
     {
         /// <inheritdoc />
@@ -55,7 +55,15 @@ namespace CliniqueInfrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Token")
+                        .IsUnique();
 
                     b.ToTable("Medecin", (string)null);
                 });
