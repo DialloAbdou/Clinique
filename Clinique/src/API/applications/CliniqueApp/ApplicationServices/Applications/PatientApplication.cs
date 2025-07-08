@@ -18,10 +18,10 @@ namespace CliniqueApp.ApplicationServices.Applications
                 string adresse,
                 int age, 
                 string pathologie,
-                string nomMedecin
+                int medecinId
             )
         {
-            var _medecin =  await _patientService.GetMedecinByNameAsync(nomMedecin);
+            
              var _maladie = await _patientService.GetMaladieByNameAsync(pathologie);
             return await _patientService.AddPatientAsync
                                     (
@@ -31,10 +31,9 @@ namespace CliniqueApp.ApplicationServices.Applications
                                              Prenom = prenom,
                                              Adresse = adresse,
                                              Age = age,
-                                             MaladieId = _maladie!.Id,
-                                             Maladie = _maladie,
-                                             MedecinId = _medecin!.Id,
-                                             Medecin = _medecin!,
+                                             MaladieId = _maladie.Id,
+                                             MedecinId = medecinId,
+                                            // Medecin = _medecin!
 
                                          }
                                      );
@@ -44,6 +43,16 @@ namespace CliniqueApp.ApplicationServices.Applications
         public async Task<IEnumerable<Patient>> GetAllPatientAsync()
         {
              return await _patientService.GetAllPatientAsync();
+        }
+
+        /// <summary>
+        /// elle renvoie le medecin par son id
+        /// </summary>
+        /// <param name="medeciId"></param>
+        /// <returns></returns>
+        public async Task<Medecin?> GetMedecinById(int medeciId)
+        {
+           return await _patientService.GetMedecinById(medeciId);
         }
     }
 }

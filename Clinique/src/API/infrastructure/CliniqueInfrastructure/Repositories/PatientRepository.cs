@@ -31,6 +31,17 @@ namespace CliniqueInfrastructure.Repositories
         {
              return await _context.Patients.ToListAsync();
         }
+        /// <summary>
+        /// elle renvoie l'objet Maladie
+        /// </summary>
+        /// <param name="maladieId"></param>
+        /// <returns></returns>
+
+        public async Task<Maladie?> GetMaladieByIdAsync(int maladieId)
+        {
+            var _maladie = await _context.Maladies.FirstOrDefaultAsync(m => m.Id == maladieId);
+            return _maladie;
+        }
 
         /// <summary>
         /// Elle renvoie l'objet Maladie 
@@ -48,15 +59,15 @@ namespace CliniqueInfrastructure.Repositories
         }
 
         /// <summary>
-        /// elle renvoie le nom du medecin 
-        /// du patient
+        /// elle renvoie l'objet Medecin
         /// </summary>
-        /// <param name="nomMedecin"></param>
+        /// <param name="medeciId"></param>
         /// <returns></returns>
-        public async Task<Medecin?> GetMedecinByNameAsync(string nomMedecin)
+
+        public async Task<Medecin?> GetMedecinById(int medeciId)
         {
-            var  medecin = await _context.Medecins.FirstOrDefaultAsync(m=>m.Equals(nomMedecin));
-            return medecin;
+            var _medecin = await _context.Medecins.FirstOrDefaultAsync(m => m.Id == medeciId);
+            return _medecin;
         }
     }
 }

@@ -2,6 +2,7 @@
 using CliniqueDomain.Tools;
 using CliniqueInfrastructure.Contrats;
 using CliniqueService.contracts;
+using SQLitePCL;
 
 namespace CliniqueService.domainServices
 {
@@ -40,6 +41,21 @@ namespace CliniqueService.domainServices
         /// <summary>
         /// elle renvoie la maladie du patient
         /// </summary>
+        /// <param name="maladieId"></param>
+        /// <returns></returns>
+        public async Task<Maladie?> GetMaladieByIdAsync(int maladieId)
+        {
+           return  await _patientRepository.GetMaladieByIdAsync(maladieId);
+        }
+
+        public Task<Medecin?> GetMaladieByIdAsync(string nomMedecin)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// elle renvoie la maladie du patient
+        /// </summary>
         /// <param name="pathologie"></param>
         /// <returns></returns>
         public async Task<Maladie?> GetMaladieByNameAsync(string pathologie)
@@ -48,14 +64,17 @@ namespace CliniqueService.domainServices
         }
 
         /// <summary>
-        /// elle le medecin du patient
+        /// elle renvoie l'objet Medecin
         /// </summary>
-        /// <param name="nomMedecin"></param>
+        /// <param name="medeciId"></param>
         /// <returns></returns>
-        public async Task<Medecin?> GetMedecinByNameAsync(string nomMedecin)
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<Medecin?> GetMedecinById(int medeciId)
         {
-            return await _patientRepository.GetMedecinByNameAsync(nomMedecin);
+            return await _patientRepository.GetMedecinById(medeciId); 
         }
+
+
 
         /// <summary>
         /// le nombre de patient inscrit dans

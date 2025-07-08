@@ -10,9 +10,11 @@ namespace CliniqueService.contracts
     public interface IPatientService
     {
         Task<IEnumerable<Patient>> GetAllPatientAsync();
-        Task<Medecin?> GetMedecinByNameAsync(string nomMedecin);
+        Task<Medecin?> GetMaladieByIdAsync(string nomMedecin);
         Task<Maladie?> GetMaladieByNameAsync(string pathologie);
+        Task<Maladie?> GetMaladieByIdAsync(int maladieId);
         Task<Patient> AddPatientAsync (Patient patient);
-     
+        Task<Medecin?> GetMedecinById(int medeciId);
+
     }
 }

@@ -15,6 +15,9 @@ namespace CliniqueApp.EndPoints
     {
         public static IServiceCollection AddPatientService( this IServiceCollection services)
         {
+            services.AddScoped<IMedecinAuthApplication, MedecinAuthApplication>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IPatientApplication, PatientApplication>();
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IPatientRepository, PatientRepository>();
@@ -31,7 +34,9 @@ namespace CliniqueApp.EndPoints
            (
              [FromBody] PatientInput patientInput,
              [FromServices] IValidator<PatientInput> validator,
-             [FromServices] IPatientApplication patientApplication
+             [FromServices] IPatientApplication patientApplication,
+             [FromServices] IMedecinAuthApplication medecinAuthApplication,
+             [FromHeader] HttpContext context
             )
         {
 
@@ -40,7 +45,7 @@ namespace CliniqueApp.EndPoints
             {
                 return Results.BadRequest(patientValidate.Errors);
             }
-        
+            var medecinId = await medecinAuthApplication.GetMedecinIdFromTokenAsync(context);
             var _patient = await patientApplication.AddPatientAsync
                                         (
                                              patientInput.Nom,
@@ -48,7 +53,7 @@ namespace CliniqueApp.EndPoints
                                              patientInput.Adresse,
                                              patientInput.Age,
                                              patientInput.pathologie,
-                                             patientInput.NomMedecin
+                                             medecinId.Value
                                          );
             return Results.Ok(CliniqueMapping.ToOutputPatient(_patient));
         }
