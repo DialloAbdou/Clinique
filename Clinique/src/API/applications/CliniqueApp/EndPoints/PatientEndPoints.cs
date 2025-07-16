@@ -15,9 +15,6 @@ namespace CliniqueApp.EndPoints
     {
         public static IServiceCollection AddPatientService( this IServiceCollection services)
         {
-            services.AddScoped<IMedecinAuthApplication, MedecinAuthApplication>();
-            services.AddScoped<IAuthService, AuthService>();
-            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IPatientApplication, PatientApplication>();
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IPatientRepository, PatientRepository>();
@@ -35,8 +32,8 @@ namespace CliniqueApp.EndPoints
              [FromBody] PatientInput patientInput,
              [FromServices] IValidator<PatientInput> validator,
              [FromServices] IPatientApplication patientApplication,
-             [FromServices] IMedecinAuthApplication medecinAuthApplication,
-             [FromHeader] HttpContext context
+             [FromServices] IAuthApplication authApplication,
+             HttpContext httpContext
             )
         {
 
@@ -45,7 +42,16 @@ namespace CliniqueApp.EndPoints
             {
                 return Results.BadRequest(patientValidate.Errors);
             }
-            var medecinId = await medecinAuthApplication.GetMedecinIdFromTokenAsync(context);
+            
+            string token = httpContext.Request.Headers["UserToken"].ToString();
+
+            var medecinId = await authApplication.GetMedecinIdFromTokenAsync(token);
+            if(!medecinId.HasValue)
+            {
+                return Results.Unauthorized();
+            }
+
+            // ajoutons idMedecin dans patientInput
             var _patient = await patientApplication.AddPatientAsync
                                         (
                                              patientInput.Nom,
@@ -54,6 +60,7 @@ namespace CliniqueApp.EndPoints
                                              patientInput.Age,
                                              patientInput.pathologie,
                                              medecinId.Value
+
                                          );
             return Results.Ok(CliniqueMapping.ToOutputPatient(_patient));
         }
