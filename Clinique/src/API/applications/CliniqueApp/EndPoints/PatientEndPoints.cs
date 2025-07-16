@@ -31,7 +31,9 @@ namespace CliniqueApp.EndPoints
            (
              [FromBody] PatientInput patientInput,
              [FromServices] IValidator<PatientInput> validator,
-             [FromServices] IPatientApplication patientApplication
+             [FromServices] IPatientApplication patientApplication,
+             [FromServices] IAuthApplication authApplication,
+             HttpContext httpContext
             )
         {
 
@@ -40,7 +42,16 @@ namespace CliniqueApp.EndPoints
             {
                 return Results.BadRequest(patientValidate.Errors);
             }
-        
+            
+            string token = httpContext.Request.Headers["UserToken"].ToString();
+
+            var medecinId = await authApplication.GetMedecinIdFromTokenAsync(token);
+            if(!medecinId.HasValue)
+            {
+                return Results.Unauthorized();
+            }
+
+            // ajoutons idMedecin dans patientInput
             var _patient = await patientApplication.AddPatientAsync
                                         (
                                              patientInput.Nom,
@@ -48,7 +59,8 @@ namespace CliniqueApp.EndPoints
                                              patientInput.Adresse,
                                              patientInput.Age,
                                              patientInput.pathologie,
-                                             patientInput.NomMedecin
+                                             medecinId.Value
+
                                          );
             return Results.Ok(CliniqueMapping.ToOutputPatient(_patient));
         }

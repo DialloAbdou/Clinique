@@ -18,10 +18,10 @@ namespace CliniqueApp.ApplicationServices.Applications
                 string adresse,
                 int age, 
                 string pathologie,
-                string nomMedecin
+                int medecinId
             )
         {
-            var _medecin =  await _patientService.GetMedecinByNameAsync(nomMedecin);
+            //var _medecin = await _patientService.GetMedecinByNameAsync(nomMedecin);
              var _maladie = await _patientService.GetMaladieByNameAsync(pathologie);
             return await _patientService.AddPatientAsync
                                     (
@@ -31,11 +31,8 @@ namespace CliniqueApp.ApplicationServices.Applications
                                              Prenom = prenom,
                                              Adresse = adresse,
                                              Age = age,
-                                             MaladieId = _maladie!.Id,
-                                             Maladie = _maladie,
-                                             MedecinId = _medecin!.Id,
-                                             Medecin = _medecin!,
-
+                                             MaladieId = _maladie!.Id,                                 
+                                             MedecinId = medecinId
                                          }
                                      );
 

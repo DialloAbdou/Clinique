@@ -20,12 +20,12 @@ namespace CliniqueService.domainServices
         /// <returns></returns>
         /// <exception cref="IndexOutOfRangeException"></exception>
         public async Task<Medecin> AddMedecinAsync(Medecin medecin)
-        {
-            var nbreMedecin = await GetNbMedecin();
-            if(nbreMedecin >=(Int32)Limites.A_DeuxMedecins)
-            {
-                throw new IndexOutOfRangeException($"le service des urgences dispose {nbreMedecin} medecins");
-            }
+        {            //var nbreMedecin = await GetNbMedecin();
+            //if(nbreMedecin >=(Int32)Limites.A_DeuxMedecins)
+            //{
+            //    throw new IndexOutOfRangeException($"le service des urgences dispose {nbreMedecin} medecins");
+            //}
+
             return await _medecinRepository.AddMedecinAsync(medecin);
         }
 

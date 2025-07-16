@@ -11,7 +11,7 @@ namespace CliniqueApp.ApplicationServices.Contrats
             string adresse,
             int age,
             string pathologie,
-            string nomMedecin
+            int medecinId
         );
 
         Task<IEnumerable<Patient>> GetAllPatientAsync();
