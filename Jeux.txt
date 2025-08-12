@@ -1,0 +1,15 @@
+	Jeux de tests
+
+   ****=========création Medecin=======*****
+    1) Claude Deroville   token="42955d2a-b345-4e"
+    2) David Attia 	  token = "eb4c4d63-ee91-43"
+    ***======= Creation Maladie ===========
+	Pathologie : "scarlatine"
+	Pathologie : "Varicelle "
+	Pathologie : "Tuberculose "
+	Pathologie : "Covid "
+	Pathologie : "Grippe "
+	Pathologie : "Rhume "
+	Pathologie : "Oreillon"
+
+  ******* ajouter Patient******

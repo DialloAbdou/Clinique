@@ -23,8 +23,25 @@ namespace CliniqueApp.EndPoints
         public static RouteGroupBuilder GetMedecinEndPoint(this RouteGroupBuilder group)
         {
             group.MapPost("", AddMedecinAsync);
+            group.MapGet("", GetAllMedecinAsync);
             return group;
         }
+
+        public static async Task<IResult> GetAllMedecinAsync
+            (
+                [FromServices]IMedecinApplication medecinApplication
+            )
+        {
+            var _medecins = await medecinApplication.GetAllMedecin();
+            return Results.Ok(_medecins.Select(CliniqueMapping.ToOutPutMedecin));
+        }
+
+        /// <summary>
+        ///  Ajout d'un médecin
+        /// </summary>
+        /// <param name="medecinInput"></param>
+        /// <param name="medecinApplication"></param>
+        /// <returns></returns>
         private static async Task<IResult> AddMedecinAsync
             (
                 [FromBody] MedecinInput medecinInput,

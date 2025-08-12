@@ -41,9 +41,15 @@ namespace CliniqueApp.ApplicationServices.Applications
 
         }
 
-        public async Task<IEnumerable<Patient>> GetAllPatientAsync()
+
+        //public async Task<IEnumerable<Patient>> GetAllPatientAsync()
+        //{
+        //   return await _patientService.GetMedecinById(medeciId);
+        //}
+
+        public Task<Medecin?> GetMedecinById(int medeciId)
         {
-           return await _patientService.GetMedecinById(medeciId);
+            throw new NotImplementedException();
         }
     }
 }

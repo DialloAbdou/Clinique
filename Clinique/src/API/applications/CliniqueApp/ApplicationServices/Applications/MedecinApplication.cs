@@ -33,5 +33,11 @@ namespace CliniqueApp.ApplicationServices.Applications
 
             });
         }
+
+        public async Task<IEnumerable<Medecin>> GetAllMedecin()
+        {
+             return await _medecinService.GetAllMedecinAsync();
+        }
+            
     }
 }

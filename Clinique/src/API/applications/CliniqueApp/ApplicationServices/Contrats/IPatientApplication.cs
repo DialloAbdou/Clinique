@@ -14,7 +14,7 @@ namespace CliniqueApp.ApplicationServices.Contrats
             int medecinId
         );
 
-        Task<IEnumerable<Patient>> GetAllPatientAsync();
+      //  Task<IEnumerable<Patient>> GetAllPatientAsync();
 
         Task<Medecin?> GetMedecinById(int medeciId);
 

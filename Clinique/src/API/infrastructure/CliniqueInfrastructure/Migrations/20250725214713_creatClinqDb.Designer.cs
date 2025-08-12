@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CliniqueInfrastructure.Migrations
 {
     [DbContext(typeof(CliniqueDbContext))]
-    [Migration("20250704101243_CreateDb")]
-    partial class CreateDb
+    [Migration("20250725214713_creatClinqDb")]
+    partial class creatClinqDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

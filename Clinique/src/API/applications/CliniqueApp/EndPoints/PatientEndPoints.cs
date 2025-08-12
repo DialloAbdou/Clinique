@@ -15,9 +15,13 @@ namespace CliniqueApp.EndPoints
     {
         public static IServiceCollection AddPatientService( this IServiceCollection services)
         {
+            services.AddScoped<IMedecinAuthApplication, MedecinAuthApplication>();
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IPatientApplication, PatientApplication>();
             services.AddScoped<IPatientService, PatientService>();
             services.AddScoped<IPatientRepository, PatientRepository>();
+            services.AddScoped<IAuthApplication, AuthApplication>();
             return services;
         }
         public static RouteGroupBuilder GetPatientEndPoint( this RouteGroupBuilder group)
@@ -34,6 +38,7 @@ namespace CliniqueApp.EndPoints
              [FromServices] IPatientApplication patientApplication,
              [FromServices] IAuthApplication authApplication,
              HttpContext httpContext
+
             )
         {
 
