@@ -25,5 +25,15 @@ namespace CliniqueApp.ApplicationServices.Applications
 
             });
         }
+
+        /// <summary>
+        /// elle retourne la liste de toutes les maladies
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<IEnumerable<Maladie>> GetAllMaladiesAsync()
+        {
+            return  await _maladeService.GetAllMaladiesAsync();
+        }
     }
 }

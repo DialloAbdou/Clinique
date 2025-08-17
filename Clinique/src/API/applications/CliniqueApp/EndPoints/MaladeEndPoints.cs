@@ -23,6 +23,7 @@ namespace CliniqueApp.EndPoints
         public static RouteGroupBuilder GetMaladeEndPoint(this RouteGroupBuilder group)
         {
             group.MapPost("", AddMaladeAsync);
+            group.MapGet("", GetAllMaladiesAsync);
             return group;
         }
 
@@ -33,5 +34,13 @@ namespace CliniqueApp.EndPoints
             var _malade = await maladeApplication.AddMaladeAsync(maladeInput.Pathologie);
             return Results.Ok(CliniqueMapping.ToOutputMalade(_malade));
         }
+
+        private static async Task<IResult> GetAllMaladiesAsync
+            ([FromServices] IMaladeApplication maladeApplication)
+        {
+            var maladies = await maladeApplication.GetAllMaladiesAsync();
+            return Results.Ok(maladies.Select(CliniqueMapping.ToOutputMalade));
+        }
+
     }
 }

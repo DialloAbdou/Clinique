@@ -23,6 +23,7 @@ namespace CliniqueApp.ApplicationServices.Applications
         {
             //var _medecin = await _patientService.GetMedecinByNameAsync(nomMedecin);
              var _maladie = await _patientService.GetMaladieByNameAsync(pathologie);
+          
             return await _patientService.AddPatientAsync
                                     (
                                          new Patient

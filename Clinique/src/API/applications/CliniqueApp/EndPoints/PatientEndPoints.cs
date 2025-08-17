@@ -63,7 +63,7 @@ namespace CliniqueApp.EndPoints
                                              patientInput.Prenom,
                                              patientInput.Adresse,
                                              patientInput.Age,
-                                             patientInput.pathologie,
+                                             patientInput.pathologie.ToString(),
                                              medecinId.Value
 
                                          );
