@@ -34,19 +34,16 @@ namespace CliniqueApp.ApplicationServices.Applications
                                              Age = age,
                                              MaladieId = _maladie!.Id,                                 
                                              MedecinId = medecinId
-
-
-
                                          }
                                      );
 
         }
 
+        public async Task<Maladie?> GetMaladieByName(string NomPathologie, int medecinId)
+        {
+             return await _patientService.GetMaladieByName(NomPathologie, medecinId);
+        }
 
-        //public async Task<IEnumerable<Patient>> GetAllPatientAsync()
-        //{
-        //   return await _patientService.GetMedecinById(medeciId);
-        //}
 
         public Task<Medecin?> GetMedecinById(int medeciId)
         {

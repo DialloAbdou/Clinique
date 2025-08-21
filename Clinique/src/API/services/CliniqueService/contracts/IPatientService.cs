@@ -15,6 +15,7 @@ namespace CliniqueService.contracts
         Task<Maladie?> GetMaladieByIdAsync(int maladieId);
         Task<Patient> AddPatientAsync (Patient patient);
         Task<Medecin?> GetMedecinById(int medeciId);
+        Task<Maladie?> GetMaladieByName(String NomPathologie, int medecinId);
 
     }
 }

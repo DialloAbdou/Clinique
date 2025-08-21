@@ -7,6 +7,7 @@ using CliniqueInfrastructure.Repositories;
 using CliniqueService.contracts;
 using CliniqueService.domainServices;
 using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CliniqueApp.EndPoints
@@ -28,9 +29,19 @@ namespace CliniqueApp.EndPoints
         {
             group.MapPost("", AddPatientAsync);
             group.MapGet("", GetAllPatientAsync);
+            group.MapGet("/{NomPathologie}", GetMaladieByNameAsync);
             return group;
         }
         
+        /// <summary>
+        /// Ajout de patient        
+        /// </summary>
+        /// <param name="patientInput"></param>
+        /// <param name="validator"></param>
+        /// <param name="patientApplication"></param>
+        /// <param name="authApplication"></param>
+        /// <param name="httpContext"></param>
+        /// <returns></returns>
         private static async Task< IResult> AddPatientAsync
            (
              [FromBody] PatientInput patientInput,
@@ -57,7 +68,7 @@ namespace CliniqueApp.EndPoints
             }
 
             // ajoutons idMedecin dans patientInput
-            var _patient = await patientApplication.AddPatientAsync
+                var _patient = await patientApplication.AddPatientAsync
                                         (
                                              patientInput.Nom,
                                              patientInput.Prenom,
@@ -70,6 +81,11 @@ namespace CliniqueApp.EndPoints
             return Results.Ok(CliniqueMapping.ToOutputPatient(_patient));
         }
 
+        /// <summary>
+        /// elle renvoie la liste de patients   
+        /// </summary>
+        /// <param name="patientService"></param>
+        /// <returns></returns>
         private static async Task<IResult> GetAllPatientAsync
             (
               [FromServices] IPatientService patientService
@@ -78,6 +94,22 @@ namespace CliniqueApp.EndPoints
             var _patients = await patientService.GetAllPatientAsync();
             if (_patients is null) return Results.NoContent();
             return Results.Ok(_patients.ToList().ConvertAll(CliniqueMapping.ToOutputPatient));
+        }
+
+        private static async Task<IResult> GetMaladieByNameAsync
+            (
+                [FromRoute] string NomPathologie,
+                [FromServices] IAuthApplication authApplication,
+                [FromServices] IPatientApplication patientApplication,
+                HttpContext httpContext
+            )
+        {
+             
+            var token = httpContext.Request.Headers["UserToken"].ToString();
+            var medecinId = await authApplication.GetMedecinIdFromTokenAsync(token);
+            var _maladie = await patientApplication.GetMaladieByName(NomPathologie, medecinId.Value);
+            if (_maladie is null) return Results.NotFound();
+            return Results.Ok(CliniqueMapping.ToOutputMalade(_maladie));
         }
 
     }

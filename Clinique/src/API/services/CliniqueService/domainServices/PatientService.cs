@@ -53,6 +53,11 @@ namespace CliniqueService.domainServices
             throw new NotImplementedException();
         }
 
+        public async Task<Maladie?> GetMaladieByName(string NomPathologie, int medecinId)
+        {
+            return  await _patientRepository.GetMaladieByName(NomPathologie, medecinId);
+        }
+
         /// <summary>
         /// elle renvoie la maladie du patient
         /// </summary>

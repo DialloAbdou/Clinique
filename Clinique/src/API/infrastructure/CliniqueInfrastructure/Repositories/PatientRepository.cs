@@ -1,4 +1,4 @@
-﻿using CliniqueDomain.Models;
+﻿    using CliniqueDomain.Models;
 using CliniqueInfrastructure.Contrats;
 using Microsoft.EntityFrameworkCore;
 
@@ -41,6 +41,21 @@ namespace CliniqueInfrastructure.Repositories
         {
             var _maladie = await _context.Maladies.FirstOrDefaultAsync(m => m.Id == maladieId);
             return _maladie;
+        }
+
+        /// <summary>
+        /// elle renvoie l'objet Maladie    
+        /// </summary>
+        /// <param name="NomPathologie"></param>
+        /// <param name="medecinId"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<Maladie?> GetMaladieByName(string NomPathologie, int medecinId)
+        {
+            return await _context.Maladies
+                .Include(m => m.Patients)
+                .FirstOrDefaultAsync(m => m.Pathologie == NomPathologie && m.Patients.Any(p => p.MedecinId == medecinId));
+
         }
 
         /// <summary>

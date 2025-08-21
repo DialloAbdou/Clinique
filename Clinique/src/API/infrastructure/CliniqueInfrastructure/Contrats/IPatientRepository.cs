@@ -14,5 +14,6 @@ namespace CliniqueInfrastructure.Contrats
         Task<Medecin?> GetMedecinById(int medeciId);
         Task<Maladie?> GetMaladieByIdAsync(int maladieId);
         Task<Maladie?> GetMaladieByNameAsync( string pathologie);
+        Task<Maladie?> GetMaladieByName(String NomPathologie, int medecinId);
     }
 }
