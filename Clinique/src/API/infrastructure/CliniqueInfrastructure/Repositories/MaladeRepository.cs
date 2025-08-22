@@ -31,5 +31,12 @@ namespace CliniqueInfrastructure.Repositories
         {
             return await _context.Maladies.ToListAsync();
         }
+
+        public async Task<Maladie?> GetMaladieByNameAsync(string nomPathologie)
+        {
+            return await _context.Maladies
+                .FirstOrDefaultAsync(m=>m.Pathologie == nomPathologie);
+        }
     }
 }
+  

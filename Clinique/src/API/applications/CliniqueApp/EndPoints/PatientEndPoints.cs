@@ -29,7 +29,6 @@ namespace CliniqueApp.EndPoints
         {
             group.MapPost("", AddPatientAsync);
             group.MapGet("", GetAllPatientAsync);
-            group.MapGet("/{NomPathologie}", GetMaladieByNameAsync);
             return group;
         }
         
@@ -47,6 +46,7 @@ namespace CliniqueApp.EndPoints
              [FromBody] PatientInput patientInput,
              [FromServices] IValidator<PatientInput> validator,
              [FromServices] IPatientApplication patientApplication,
+             [FromServices] IMaladeService maladeService,
              [FromServices] IAuthApplication authApplication,
              HttpContext httpContext
 
@@ -58,7 +58,9 @@ namespace CliniqueApp.EndPoints
             {
                 return Results.BadRequest(patientValidate.Errors);
             }
-            
+
+            var maladie = await maladeService.GetMaladieByNameAsync(patientInput.pathologie);
+            if(maladie == null)  return Results.NotFound(patientInput.pathologie);
             string token = httpContext.Request.Headers["UserToken"].ToString();
 
             var medecinId = await authApplication.GetMedecinIdFromTokenAsync(token);
@@ -67,14 +69,14 @@ namespace CliniqueApp.EndPoints
                 return Results.Unauthorized();
             }
 
-            // ajoutons idMedecin dans patientInput
+                // ajoutons idMedecin dans patientInput
                 var _patient = await patientApplication.AddPatientAsync
                                         (
                                              patientInput.Nom,
                                              patientInput.Prenom,
                                              patientInput.Adresse,
                                              patientInput.Age,
-                                             patientInput.pathologie.ToString(),
+                                             maladie.Id,
                                              medecinId.Value
 
                                          );
@@ -96,21 +98,7 @@ namespace CliniqueApp.EndPoints
             return Results.Ok(_patients.ToList().ConvertAll(CliniqueMapping.ToOutputPatient));
         }
 
-        private static async Task<IResult> GetMaladieByNameAsync
-            (
-                [FromRoute] string NomPathologie,
-                [FromServices] IAuthApplication authApplication,
-                [FromServices] IPatientApplication patientApplication,
-                HttpContext httpContext
-            )
-        {
-             
-            var token = httpContext.Request.Headers["UserToken"].ToString();
-            var medecinId = await authApplication.GetMedecinIdFromTokenAsync(token);
-            var _maladie = await patientApplication.GetMaladieByName(NomPathologie, medecinId.Value);
-            if (_maladie is null) return Results.NotFound();
-            return Results.Ok(CliniqueMapping.ToOutputMalade(_maladie));
-        }
+
 
     }
 

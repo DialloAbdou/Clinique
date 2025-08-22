@@ -1,4 +1,5 @@
 ﻿using CliniqueDomain.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CliniqueApp.ApplicationServices.Contrats
 {
@@ -10,15 +11,12 @@ namespace CliniqueApp.ApplicationServices.Contrats
             string prenom,
             string adresse,
             int age,
-            string pathologie,
+            int maladieId,
             int medecinId
         );
+        //Task<Maladie?> GetMaladieByName(String NomPathologie, int medecinId);
 
-      //  Task<IEnumerable<Patient>> GetAllPatientAsync();
 
-        Task<Medecin?> GetMedecinById(int medeciId);
-
-        Task<Maladie?> GetMaladieByName(String NomPathologie, int medecinId);
 
 
     }

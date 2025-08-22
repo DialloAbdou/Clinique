@@ -11,5 +11,6 @@ namespace CliniqueService.contracts
     {
         Task<Maladie> AddMaladeAssync(Maladie maladie);
         Task<IEnumerable<Maladie>> GetAllMaladiesAsync();
+        Task<Maladie?> GetMaladieByNameAsync(string nomPathologie);
     }
 }

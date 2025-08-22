@@ -11,9 +11,6 @@ namespace CliniqueInfrastructure.Contrats
     {
         Task<IEnumerable<Patient>> GetAllPatientAsync();
         Task<Patient> AddPatientAsync(Patient patient);
-        Task<Medecin?> GetMedecinById(int medeciId);
-        Task<Maladie?> GetMaladieByIdAsync(int maladieId);
-        Task<Maladie?> GetMaladieByNameAsync( string pathologie);
-        Task<Maladie?> GetMaladieByName(String NomPathologie, int medecinId);
+       
     }
 }

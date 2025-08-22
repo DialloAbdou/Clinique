@@ -24,6 +24,7 @@ namespace CliniqueApp.EndPoints
         {
             group.MapPost("", AddMaladeAsync);
             group.MapGet("", GetAllMaladiesAsync);
+            group.MapGet("/{nomPathologie}", GetMaladieByNameAsync);
             return group;
         }
 
@@ -42,5 +43,23 @@ namespace CliniqueApp.EndPoints
             return Results.Ok(maladies.Select(CliniqueMapping.ToOutputMalade));
         }
 
+        /// <summary>
+        /// elle renvoie la maladie
+        /// </summary>
+        /// <param name="nomPathologie"></param>
+        /// <param name="maladeApplication"></param>
+        /// <returns></returns>             
+        private static async Task<IResult> GetMaladieByNameAsync
+             ([FromRoute] string nomPathologie,
+             [FromServices] IMaladeApplication maladeApplication)
+        {
+            var maladie = await maladeApplication.GetMaladieByNameAsync(nomPathologie);
+            if (maladie == null)
+            {
+                return Results.NotFound();
+            }
+            return Results.Ok(CliniqueMapping.ToOutputMalade(maladie));
+
+        }
     }
 }

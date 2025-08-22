@@ -37,5 +37,15 @@ namespace CliniqueService.domainServices
             return await _maladeRepository.GetAllMaladiesAsync();
 
         }
+
+        /// <summary>
+        /// elle renvoie la maladie 
+        /// </summary>
+        /// <param name="nomPathologie"></param>
+        /// <returns></returns>
+        public async Task<Maladie?> GetMaladieByNameAsync(string nomPathologie)
+        {
+            return await _maladeRepository.GetMaladieByNameAsync(nomPathologie);
+        }
     }
 }

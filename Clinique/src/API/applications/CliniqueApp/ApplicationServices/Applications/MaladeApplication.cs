@@ -35,5 +35,15 @@ namespace CliniqueApp.ApplicationServices.Applications
         {
             return  await _maladeService.GetAllMaladiesAsync();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nomPathologie"></param>
+        /// <returns></returns>
+        public async Task<Maladie?> GetMaladieByNameAsync(string nomPathologie)
+        {
+           return await _maladeService.GetMaladieByNameAsync(nomPathologie);
+        }
     }
 }

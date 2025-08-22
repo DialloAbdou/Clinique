@@ -5,6 +5,7 @@ namespace CliniqueApp.ApplicationServices.Contrats
     public interface IMaladeApplication
     {
         Task<Maladie> AddMaladeAsync(string pathologie);
-        Task<IEnumerable<Maladie>> GetAllMaladiesAsync();   
+        Task<IEnumerable<Maladie>> GetAllMaladiesAsync(); 
+        Task<Maladie?> GetMaladieByNameAsync(string nomPathologie); 
     }
 }
