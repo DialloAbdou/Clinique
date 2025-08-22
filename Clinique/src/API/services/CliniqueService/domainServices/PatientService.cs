@@ -25,15 +25,17 @@ namespace CliniqueService.domainServices
             var _patient = await _patientRepository.AddPatientAsync(patient);
             return patient;
         }
+   
         /// <summary>
-        /// elle renvoie la liste de patients
+        /// elle renvoie liste des patients
+        /// selon l'authentification
         /// </summary>
+        /// <param name="medecinId"></param>
         /// <returns></returns>
-        public  async Task<IEnumerable<Patient>> GetAllPatientAsync()
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<IEnumerable<Patient>> GetAllPatients(int medecinId)
         {
-            return await _patientRepository.GetAllPatientAsync();
+            return await _patientRepository.GetAllPatients(medecinId);
         }
-
-  
     }
 }

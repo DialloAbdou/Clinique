@@ -90,10 +90,17 @@ namespace CliniqueApp.EndPoints
         /// <returns></returns>
         private static async Task<IResult> GetAllPatientAsync
             (
-              [FromServices] IPatientService patientService
+              [FromServices] IPatientApplication patientApplication,
+              [FromServices] IAuthApplication authApplication,
+              HttpContext httpContext
+
+
             )
         {
-            var _patients = await patientService.GetAllPatientAsync();
+            string token = httpContext.Request.Headers["UserToken"].ToString();
+            var medecinId = await authApplication.GetMedecinIdFromTokenAsync(token);
+            if (!medecinId.HasValue) return Results.Unauthorized();
+            var _patients = await patientApplication.GetAllPatients(medecinId.Value);
             if (_patients is null) return Results.NoContent();
             return Results.Ok(_patients.ToList().ConvertAll(CliniqueMapping.ToOutputPatient));
         }

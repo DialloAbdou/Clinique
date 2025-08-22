@@ -10,7 +10,7 @@ namespace CliniqueInfrastructure.Repositories
         public PatientRepository(CliniqueDbContext context)
         {
             _context = context;
-        }
+        }   
         /// <summary>
         /// ajout de Patient dans la base De données
         /// </summary>
@@ -31,8 +31,15 @@ namespace CliniqueInfrastructure.Repositories
         {
              return await _context.Patients.ToListAsync();
         }
-     
 
-
+        /// <summary>
+        /// elle renvoie la liste des patients
+        /// </summary>
+        /// <param name="medecinId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Patient>> GetAllPatients(int medecinId)
+        {
+            return await _context.Patients.Where(p=>p.MaladieId == medecinId).ToListAsync();
+        }
     }
 }

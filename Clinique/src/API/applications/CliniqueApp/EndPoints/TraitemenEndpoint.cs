@@ -53,21 +53,33 @@ namespace CliniqueApp.EndPoints
         }
 
         private static async Task<IResult> GetAllTimeTraitementPatient
-            (
-                  [FromServices] ITraitementApplication traitementApplication
-            )
+        (
+            [FromServices] ITraitementApplication traitementApplication,
+            [FromServices] IAuthApplication authApplication,
+            HttpContext httpContext
+
+        )
         {
-           var durees = await traitementApplication.GetAllTimeTraitementPatients();
+            string token = httpContext.Request.Headers["UserToken"].ToString();
+            var medecinId = await authApplication.GetMedecinIdFromTokenAsync(token);
+            if(!medecinId.HasValue) return Results.Unauthorized();
+            int durees = await traitementApplication.GetAllTimeTraitementPatients(medecinId.Value);
             return Results.Ok(durees);
         }
 
 
+
         private static async Task<IResult> GetAllCostTraitementPatient
            (
-                 [FromServices] ITraitementApplication traitementApplication
+             [FromServices] ITraitementApplication traitementApplication,
+             [FromServices] IAuthApplication authApplication,
+              HttpContext httpContext
            )
         {
-            var sommes = await traitementApplication.GetAllCostTraitementPatients();
+            string token = httpContext.Request.Headers["UserToken"].ToString();
+            var medecinId = await authApplication.GetMedecinIdFromTokenAsync(token);
+            if (!medecinId.HasValue) return Results.Unauthorized();
+            var sommes = await traitementApplication.GetAllCostTraitementPatients(medecinId.Value);
             return Results.Ok(sommes);
         }
 

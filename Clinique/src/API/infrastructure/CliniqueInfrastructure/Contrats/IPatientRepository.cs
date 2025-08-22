@@ -9,7 +9,7 @@ namespace CliniqueInfrastructure.Contrats
 {
     public interface IPatientRepository
     {
-        Task<IEnumerable<Patient>> GetAllPatientAsync();
+        Task<IEnumerable<Patient>> GetAllPatients(int medecinId);
         Task<Patient> AddPatientAsync(Patient patient);
        
     }

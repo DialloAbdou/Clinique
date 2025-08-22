@@ -6,8 +6,8 @@ namespace CliniqueApp.ApplicationServices.Contrats
     {
         Task<int> GetTraitementTimeByPatient(int maladeId);
         Task<Maladie> GetTraitementMaladieByPatient(int maladeId);
-        Task<int> GetAllTimeTraitementPatients();
+        Task<int> GetAllTimeTraitementPatients(int medecinId);
         Task<decimal> GetTraitementCostByPatient(int maladeId);
-        Task<decimal> GetAllCostTraitementPatients();
+        Task<decimal> GetAllCostTraitementPatients(int medecinId);
     }
 }

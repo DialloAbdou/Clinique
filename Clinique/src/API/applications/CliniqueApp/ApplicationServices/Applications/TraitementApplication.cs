@@ -16,9 +16,9 @@ namespace CliniqueApp.ApplicationServices.Applications
         /// le traitement de tous les patients
         /// </summary>
         /// <returns></returns>
-        public async Task<decimal> GetAllCostTraitementPatients()
+        public async Task<decimal> GetAllCostTraitementPatients(int medecinId)
         {
-            return await _traitementService.GetAllCostTraitementPatients();
+            return await _traitementService.GetAllCostTraitementPatients(medecinId);
         }
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace CliniqueApp.ApplicationServices.Applications
         /// de tous les patients
         /// </summary>
         /// <returns></returns>
-        public async Task<int> GetAllTimeTraitementPatients()
+        public async Task<int> GetAllTimeTraitementPatients(int medecinId)
         {
-            return await _traitementService.GetAllTimeTraitementPatients();
+            return await _traitementService.GetAllTimeTraitementPatients(medecinId);
         }
         /// <summary>
         /// elle renvoie la cout de traitement

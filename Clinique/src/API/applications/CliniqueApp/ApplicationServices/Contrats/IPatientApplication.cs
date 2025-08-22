@@ -14,7 +14,8 @@ namespace CliniqueApp.ApplicationServices.Contrats
             int maladieId,
             int medecinId
         );
-        //Task<Maladie?> GetMaladieByName(String NomPathologie, int medecinId);
+
+        Task<IEnumerable<Patient>> GetAllPatients(int medecinId);
 
 
 

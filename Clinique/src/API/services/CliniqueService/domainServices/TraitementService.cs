@@ -27,10 +27,10 @@ namespace CliniqueService.domainServices
         /// du traitement de tous les patients
         /// </summary>
         /// <returns></returns>
-        public async Task<decimal> GetAllCostTraitementPatients()
+        public async Task<decimal> GetAllCostTraitementPatients(int medecinId)
         {
 
-            var _patients = await _petientRepository.GetAllPatientAsync();
+            var _patients = await _petientRepository.GetAllPatients(medecinId);
             decimal somme = 0;
             foreach (var p in _patients)
             {
@@ -45,9 +45,9 @@ namespace CliniqueService.domainServices
         /// du traitements de tous les patients
         /// </summary>
         /// <returns></returns>
-        public async Task<int> GetAllTimeTraitementPatients()
+        public async Task<int> GetAllTimeTraitementPatients(int medecinId)
         {
-            var _patients = await _petientRepository.GetAllPatientAsync();
+            var _patients = await _petientRepository.GetAllPatients(medecinId);
             int nbrDurees = 0;
             foreach (var p in _patients)
             {
